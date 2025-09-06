@@ -1,5 +1,7 @@
 import flet as ft
 
+from datetime import datetime
+
 def main(page: ft.Page):
     page.title = 'Моё первое приложение'
     page.theme_mode = ft.ThemeMode.LIGHT
@@ -15,11 +17,14 @@ def main(page: ft.Page):
         print(name)
 
         if name:
-            greeting_text.value = f'Hello {name}!'
+            
+            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            
+            greeting_text.value = f'Hello {name}! ({now})'
             print(greeting_text)
             name_input.value = ''
 
-            greeting_history.append(f'{name}')
+            greeting_history.append(f'{name} - {now}')
             history_text.value = 'История приветствий:\n' + '\n'.join(greeting_history)
         else:
             greeting_text.value = 'Пожалуйста, введите имя!'
