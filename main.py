@@ -31,10 +31,24 @@ def main(page: ft.Page):
 
         page.update()
 
+    def clear_history(_):
+        greeting_history.clear()
+        history_text.value = "История приветствий"
+        page.update()
+
+    def theme_change(_):
+        if page.theme_mode == ft.ThemeMode.LIGHT:
+            page.theme_mode = ft.ThemeMode.DARK
+        else:
+            page.theme_mode = ft.ThemeMode.LIGHT
+        page.update()
+
     name_input = ft.TextField(label='Введите имя', on_submit=on_button_click)
     name_button = ft.ElevatedButton(text='SEND', on_click=on_button_click)
+    clear_history_button = ft.IconButton(icon=ft.Icons.DELETE, on_click=clear_history)
+    theme_button = ft.IconButton(icon=ft.Icons.BRIGHTNESS_6, on_click=theme_change, tooltip='Сменит тему')
 
-    page.add(greeting_text, name_input, name_button, history_text)
+    page.add(greeting_text, name_input, name_button, clear_history_button, theme_button, history_text)
 
 
 ft.app(target=main, view=ft.WEB_BROWSER)
