@@ -10,7 +10,6 @@ def main(page: ft.Page):
 
     greeting_history = []
     history_text = ft.Text('История приветствий:')
-    history_visible = True
 
     def on_button_click(_):
         name = name_input.value.strip()
@@ -45,12 +44,9 @@ def main(page: ft.Page):
         page.update()
 
     def history_hide(_):
-        nonlocal history_visible
-        if history_visible:
-            history_visible = False
+        if  history_text.visible == True:
             history_text.visible = False
         else:
-            history_visible = True
             history_text.visible = True
 
         page.update()
